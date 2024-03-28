@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot Interface</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    border-radius: 50%;
+    background-color: #ff7300;
+    color: white;
+    cursor: pointer;
+    padding: 10px; /* Increased padding */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  .chat-container:hover {
+    background-color: #ff7300;
+  }
+  .chat-container .icon {
+    font-size: 24px;
+    line-height: 1;
+  }
+  .chat-box {
+    display: none;
+    position: fixed;
+    bottom: 80px; /* Adjust this value to your preference */
+    right: 20px;
+    width: 400px; /* Increased width */
+    height: 400px; /* Increased height */
+    max-height: 80%;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Added padding */
+  }
+  #chat-area {
+    height: 280px; /* Adjusted height */
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  #chat-area::-webkit-scrollbar {
+    width: 0; /* Set the width of the scrollbar to 0 */
+    background: transparent; /* Set the background color of the scrollbar to transparent */
+  }
+  .chat-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+  }
+  .user-message {
+    background-color: #ff7300;
+    color: white;
+    float: right;
+    margin-left: 30%;
+  }
+  .bot-message {
+    background-color: #f8f9fa;
+    color: black;
+    float: left;
+    margin-right: 30%;
+  }
+  .input-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+  /*.input-group-append {
+  }*/
+  .floating-message {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #ff7300;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+  .floating-message.show {
+    display: block;
+  }
+  .floating-message .content {
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="chat-container" id="chatToggle">
+  <div class="icon">💬</div>
+</div>
+<div class="chat-box" id="chatBox">
+  <div id="chat-area">
+    <div class="chat-message bot-message" >Choose preferred language to continue:</div>
+    <div class="chat-message bot-message" style="cursor: pointer; margin-right:10px; background-color:#ffb578;" id="Marathi" onclick="selectLanguage('Marathi')">मराठी</div>
+    <div class="chat-message bot-message" style="cursor: pointer; margin-right:10px; background-color:#ffb578;" id="Hindi" onclick="selectLanguage('Hindi')">हिन्दी</div>
+    <div class="chat-message bot-message" style="cursor: pointer; margin-right:10px; background-color:#ffb578;" id="English" onclick="selectLanguage('English')">English</div>
+  </div>
+  <div class="input-group">
+    <input type="text" id="user-input" class="form-control" placeholder="Type your message here...">
+    <div class="input-group-append">
+      <button id="send-btn" style="background-color: #ff7300;" class="btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating introductory message from the bot -->
+<div class="floating-message" id="introductoryMessage">
+  <div class="content">How can I help you?</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    var selectedLanguage='';
+    function greet(param){
+        console.log(param);
+    }
+    function updateScroll() {
+      var element = document.getElementById("chat-area");
+      element.scrollTop = element.scrollHeight;
+    }
+    function getResponse(question) {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:5000/get_response',
+                contentType: 'application/json',
+                data: JSON.stringify({ 'question': question }),
+                success: function(response) {
+                    $('#chat-area').append('<div class="chat-message bot-message">' + response.answer + '</div>');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching weather data:', error);
+                }
+            });
+        }
+    // Function to handle language selection
+    function selectLanguage(language) {
+        var botResponse = "How can I help you?"; // Generate bot response based on selected language
+        if(language == "Hindi"){
+            botResponse = "मैं आपकी किस प्रकार सहायता कर सकता हूँ?";
+            $("#user-input").attr("placeholder","अपना संदेश यहाँ टाइप करें...");
+        }else if(language == "Marathi"){
+            botResponse = "मी तुम्हाला कसे मदत करू शकतो?";
+            $("#user-input").attr("placeholder","आपले संदेश इथे टाइप करा...");
+        }
+        $('#chat-area').append('<div class="chat-message bot-message">' + botResponse + '</div>');
+        updateScroll();
+        selectLanguage = language;
+        console.log(selectLanguage);
+    }
+  $(document).ready(function() {
+    $('#chatToggle').click(function() {
+      $('#chatBox').toggle();
+      $('#introductoryMessage').hide(); // Hide introductory message when chatbox is opened
+      updateScroll();
+    });
+
+    // Show introductory message when the page loads
+    $('#introductoryMessage').
+    addClass('show');
+
+    $('#send-btn').click(sendMessage);
+
+    $('#user-input').keypress(function(e) {
+      if (e.which === 13) {
+        sendMessage();
+      }
+    });
+
+    function sendMessage() {
+      var userInput = $('#user-input').val();
+      if(userInput.trim() !== '') {
+        $('#chat-area').append('<div class="chat-message user-message">' + userInput + '</div>');
+        $('#user-input').val('');
+        // Simulate a chatbot response
+        setTimeout(function() {
+          /*var botResponse = getBotResponse(userInput); // Function to get a response from the chatbot
+          $('#chat-area').append('<div class="chat-message bot-message">' + botResponse + '</div>');*/
+          getResponse(userInput);
+          updateScroll(); 
+        }, 1000); 
+      }
+    }
+
+    
+
+    function getBotResponse(input) {
+      // Here you would typically send the input to your chatbot backend and get a response
+      // For demonstration, we'll just echo the user's message with a simple response
+      return "You said: '" + input + "'. I'm a simple echo bot!";
+    }
+
+    
+  });
+</script>
+</body>
+</html>

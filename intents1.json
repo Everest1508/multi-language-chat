@@ -1,0 +1,192 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi",
+        "hello",
+        "hey",
+        "good day"
+      ],
+      "responses": [
+        "Hello! Welcome to our lawyer website. How can I assist you today?"
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye",
+        "goodbye",
+        "see you later",
+        "have a good day"
+      ],
+      "responses": [
+        "Goodbye! Feel free to reach out if you have more questions."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "find_lawyer",
+      "patterns": [
+        "find a lawyer",
+        "search for a lawyer",
+        "need legal help",
+        "looking for an attorney",
+        "seek legal counsel"
+      ],
+      "responses": [
+        "Sure, I can help you find a lawyer. Please provide me with some details such as your location and the type of legal assistance you need."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "legal_advice",
+      "patterns": [
+        "need legal advice",
+        "legal consultation",
+        "ask for legal guidance",
+        "legal question"
+      ],
+      "responses": [
+        "I can provide general legal information. However, for specific legal advice, it's best to consult with a qualified attorney. What legal topic do you need assistance with?"
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "contact_lawyer",
+      "patterns": [
+        "contact a lawyer",
+        "get in touch with an attorney",
+        "schedule a consultation",
+        "request callback from a lawyer"
+      ],
+      "responses": [
+        "Sure, I can help you connect with a lawyer. Please provide me with your contact information, and I'll arrange for a lawyer to reach out to you."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "thank",
+      "patterns": [
+        "thank you",
+        "thanks",
+        "appreciate it"
+      ],
+      "responses": [
+        "You're welcome! If you have any more questions, feel free to ask."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "help",
+        "need assistance",
+        "how can you help me"
+      ],
+      "responses": [
+        "I'm here to assist you with any questions you have about finding and contacting lawyers. Feel free to ask me anything!"
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "default",
+      "patterns": [
+        ""
+      ],
+      "responses": [
+        "I'm sorry, I couldn't understand that. Could you please rephrase or provide more context?"
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "legal_specialization",
+      "patterns": [
+        "what areas of law do you specialize in?",
+        "what type of cases do you handle?",
+        "what is your legal expertise?",
+        "what are your practice areas?"
+      ],
+      "responses": [
+        "Our firm specializes in various areas of law, including family law, criminal defense, personal injury, immigration, and more. How can I assist you further?"
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "schedule_consultation",
+      "patterns": [
+        "schedule a consultation",
+        "book an appointment",
+        "set up a meeting",
+        "arrange a legal consultation"
+      ],
+      "responses": [
+        "Sure, I can help you schedule a consultation with one of our lawyers. Please provide me with your availability and preferred method of contact."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "service_area",
+      "patterns": [
+        "where are you located?",
+        "what areas do you serve?",
+        "what regions do you cover?"
+      ],
+      "responses": [
+        "Our firm is located in 'Nashik', and we serve clients across 'India'."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "cost_estimates",
+      "patterns": [
+        "how much do your services cost?",
+        "what are your fees?",
+        "can you provide a cost estimate?"
+      ],
+      "responses": [
+        "Our fees vary depending on the nature and complexity of the case. We offer initial consultations to discuss your legal needs and provide cost estimates accordingly."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "legal_resources",
+      "patterns": [
+        "do you have any legal resources?",
+        "where can I find legal information?",
+        "recommend legal guides or articles"
+      ],
+      "responses": [
+        "Yes, we provide access to legal resources on our website, including articles, guides, and frequently asked questions. You can also reach out to us for further assistance."
+      ],
+      "context_set": "",
+      "links": []
+    },
+    {
+      "tag": "appointment_confirmation",
+      "patterns": [
+        "confirm my appointment",
+        "verify my meeting",
+        "make sure my consultation is scheduled"
+      ],
+      "responses": [
+        "I've confirmed your appointment. Our team will be in touch with you shortly to finalize the details. Thank you for choosing our firm!"
+      ],
+      "context_set": "",
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+    "intents":[
+  {
+    "tag": "greeting",
+    "patterns": [
+       "hi",
+       "how are you?",
+       "is anyone there?",
+       "hello",
+       "good day",
+       "what's up",
+       "how are ya",
+       "heyy",
+       "whatsup",
+       "??? ??? ??",
+       "hello cognifront",
+       "hello bot",
+       "hey"
+    ],
+    "responses": [
+       "Hello!",
+       "Good to see you again!",
+       "Hi there, how can I help?"
+    ],
+    "context_set": "",
+    "links":[]
+ },
+  {
+    "tag": "goodbye",
+    "patterns": [
+       "cya",
+       "see you",
+       "bye bye",
+       "See you later",
+       "Goodbye",
+       "I am Leaving",
+       "Bye",
+       "Have a Good day",
+       "talk to you later",
+       "ttyl",
+       "i got to go",
+       "gtg"
+    ],
+    "responses": [
+       "Sad to see you go :(",
+       "Talk to you later",
+       "Goodbye!",
+       "Come back soon"
+    ],
+    "context_set": "",
+    "links":[]
+ },
+
+ {
+    "tag": "Help1",
+    "patterns": [
+        "I received a cease and desist letter, what should I do next?",
+       "I received a cease and desist letter, I need help with it",
+       "I want help with cease and desist letter",
+       "Help me with cease and desist letter"
+       
+    ],
+    "responses": [
+        "Hi",
+        "Hello",
+        "Hi, How can I help you?",
+        "Hello, How may I help you?",
+        "Hello, How can I help you with?",
+        "What can I help you with?"
+    ],
+    "context_set": "",
+    "links":[]
+ },
+{
+    "tag":"business",
+    "patterns":[
+        "I need legal advice regarding starting a business, can you suggest a knowledgeable business attorney?",
+        "I need help regarding business", "Any business attorney?","Help me with business attorney"," Are there are business attornies?", "I want some business attorny"
+    ],
+    "responses":[
+        "Hi, How can I help you?", "Hello, How can I help you with?","Hello, How may I help you?", "Hi, How may I help you?", "What can I help you with?"
+    ]
+},
+{
+    "tag":"bankruptcy",
+    "patterns":["I'm considering filing for bankruptcy, can you recommend a bankruptcy attorney who offers compassionate support and guidance?", "I want to file for bankruptcy", "Bankruptcy attorney", "Suggest some good Bank attorny", "Suggest some Bank Attorny"
+], 
+    "responses":[
+    "Hi, How can I help you?","Hi, How may I help you?", "Hello, How can I help you with?", "Hello, How may I help you?", "What can I help you with?"]
+},
+
+{
+    "tag":"cyberbullying",
+    "patterns":["I'm a victim of cyberbullying, can you recommend a lawyer who handles internet defamation cases?", "Reccomend a lawyer for cyber bullying","Sugest some lawyers for internet defamation cases","Suggest some lawyers for internet based cases","Lawyer for Internet cases","Lawyers for Cyber bullying cases"],
+    "responses":["Hi, How can I help you?","Hi, How may I help you?", "Hello, How can I help you with?", "Hello, How may I help you?", "What can I help you with?"]
+
+}
+
+]
+}
