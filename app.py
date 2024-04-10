@@ -10,7 +10,11 @@ import json
 import random
 from keras.optimizers import SGD
 import warnings
+from googletrans import Translator, constants
 warnings.filterwarnings('ignore')
+
+translator = Translator()
+
 
 sgd = SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 
@@ -81,12 +85,22 @@ def answer(input_sentence):
     else:
         print("No high probability intent found.")
         return "I am sorry, I couldn't Understand that."
+    
+
 
 @app.route('/get_response', methods=['POST'])
 def api():
     if request.method == 'POST':
         data = request.json
-        data_ans = answer(data['question'])
+        question = translator.translate(data['question'])
+        data_ans = answer(question.text)
+        dest = "en"
+        print(data)
+        if data['language']=="Hindi":
+            dest = "hi"
+        elif data['language']=="Marathi":
+            dest = "mr"
+        data_ans = translator.translate(data_ans,dest=dest).text
         response_data = {'message': 'Received your data!', 'answer': data_ans}
         return jsonify(response_data)
 
